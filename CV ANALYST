@@ -3,7 +3,6 @@ import re
 from textblob import TextBlob
 
 
-# Function to extract text from PDF file
 def extract_text_from_pdf(pdf_path):
     text = ""
     with open(pdf_path, "rb") as file:
@@ -14,7 +13,6 @@ def extract_text_from_pdf(pdf_path):
     return text
 
 
-# Function to preprocess text
 def preprocess_text(text):
     # Convert text to lowercase
     text = text.lower()
@@ -24,13 +22,11 @@ def preprocess_text(text):
     return text
 
 
-# Function to perform sentiment analysis and determine personality traits
 def predict_personality_traits(cv_text):
     # Perform sentiment analysis using TextBlob
     blob = TextBlob(cv_text)
     sentiment_score = blob.sentiment.polarity
 
-    # Determine personality traits based on sentiment score
     personality_traits = {}
     if sentiment_score > 0.5:
         personality_traits['extroversion'] = 'High'
@@ -54,13 +50,11 @@ def predict_personality_traits(cv_text):
     return personality_traits
 
 
-# Example usage: Read text from a PDF file and predict personality traits
-pdf_path = "D:\oragon.pdf"  # Replace with the path to your PDF file
+pdf_path = "D:\oragon.pdf" 
 cv_text = extract_text_from_pdf(pdf_path)
 preprocessed_cv_text = preprocess_text(cv_text)
 personality_traits = predict_personality_traits(preprocessed_cv_text)
 
-# Generate analytical results
 print("Predicted Personality Traits:")
 for trait, value in personality_traits.items():
     print(f"{trait.capitalize()}: {value}")
